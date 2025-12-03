@@ -39,18 +39,18 @@ ActorProfile En_Clear_Tag_Profile = {
     /**/ OoTArwing_Draw,
 };
 
-s16 CUSTOM_ACTOR_BG_HAKA = ACTOR_ID_MAX;
+s16 CUSTOM_ACTOR_EN_ARWING = ACTOR_ID_MAX;
 
 RECOMP_CALLBACK("*", recomp_on_init) 
-void BgHaka_OnRecompInit() {
-    CUSTOM_ACTOR_BG_HAKA = CustomActor_Register(&En_Clear_Tag_Profile);
+void OoTArwing_OnRecompInit() {
+    CUSTOM_ACTOR_EN_ARWING = CustomActor_Register(&En_Clear_Tag_Profile);
 }
 
-// @ProxyMM Example spawning this actor in south clock town.
+// Spawn Arwing in South Clock Town
 RECOMP_HOOK("Actor_SpawnTransitionActors")
-void BgHaka_OnRoomLoad(PlayState* play, ActorContext* actorCtx) {
+void OoTArwing_OnRoomLoad(PlayState* play, ActorContext* actorCtx) {
     if (play->sceneId == SCENE_CLOCKTOWER) {
-        Actor_SpawnAsChildAndCutscene(&play->actorCtx, play, CUSTOM_ACTOR_BG_HAKA, -367.0f, 0.0f, -245.0f, 0, 0x8000, 0, 0, 0, 0, 0);
+        Actor_SpawnAsChildAndCutscene(&play->actorCtx, play, CUSTOM_ACTOR_EN_ARWING, -367.0f, 0.0f, -245.0f, 0, 0x8000, 0, 0, 0, 0, 0);
     }
 }
 
@@ -513,7 +513,10 @@ void OoTArwing_Update(Actor* thisx, PlayState* play2) {
                 // Fire the Arwing laser.
                 if (this->shouldShootLaser) {
                     this->shouldShootLaser = false;
-                    Actor_Spawn(&play->actorCtx, play, ACTOR_EN_CLEAR_TAG, this->actor.world.pos.x,
+                    // Actor_Spawn(&play->actorCtx, play, ACTOR_EN_CLEAR_TAG, this->actor.world.pos.x,
+                    //             this->actor.world.pos.y, this->actor.world.pos.z, this->actor.world.rot.x,
+                    //             this->actor.world.rot.y, this->actor.world.rot.z, CLEAR_TAG_STATE_LASER);
+                    Actor_Spawn(&play->actorCtx, play, CUSTOM_ACTOR_EN_ARWING, this->actor.world.pos.x,
                                 this->actor.world.pos.y, this->actor.world.pos.z, this->actor.world.rot.x,
                                 this->actor.world.rot.y, this->actor.world.rot.z, CLEAR_TAG_STATE_LASER);
                 }
