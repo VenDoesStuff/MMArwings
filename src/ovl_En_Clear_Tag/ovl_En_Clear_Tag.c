@@ -3,7 +3,7 @@
 #include "gfx.h"
 #include "sys_matrix.h"
 
-static Gfx gArwingDL[91] = {
+Gfx gArwingDL[] = {
     gsDPLoadTextureBlock(ovl_En_Clear_Tag_00001498_Tex, G_IM_FMT_RGBA, G_IM_SIZ_16b,
  ovl_En_Clear_Tag_00001498_Tex_WIDTH, ovl_En_Clear_Tag_00001498_Tex_HEIGHT, 0, G_TX_NOMIRROR | G_TX_CLAMP,
  G_TX_NOMIRROR | G_TX_CLAMP, 6, 5, G_TX_NOLOD, G_TX_NOLOD),
@@ -73,7 +73,7 @@ static Gfx gArwingDL[91] = {
     gsSPEndDisplayList(),
 };
 
-static Vtx gArwingVtx[148] = {
+Vtx gArwingVtx[] = {
     VTX(   -15,     -1,    -23,   0x9E0,   0x25F, 0x00, 0x8D, 0xE5, 0xFF), // 0
     VTX(     0,      8,    -63,   0x400,  -0x13E, 0x00, 0x8D, 0xE5, 0xFF), // 1
     VTX(    15,     -1,    -23,  -0x1DF,   0x25F, 0x75, 0xEC, 0xF1, 0xFF), // 2
@@ -224,14 +224,14 @@ static Vtx gArwingVtx[148] = {
     VTX(     7,      8,    -25,  -0x121,   0x100, 0x65, 0x3F, 0x00, 0xFF), // 147
 };
 
-u64 ovl_En_Clear_Tag_00000C18_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00000C18_Tex_WIDTH, ovl_En_Clear_Tag_00000C18_Tex_HEIGHT, 16)] = {
+u64 ovl_En_Clear_Tag_00000C18_Tex[] = {
 0x6B556B556B556B55, 0x6B556B556B556B55, 0x9CDF9CDF9CDF9CDF, 0x9CDF9CDF9CDF9CDF,
 0x9CDF9CDF9CDF9CDF, 0x9CDF9CDF9CDF9CDF, 0x6B556B556B556B55, 0x6B556B556B556B55,
 0x2107210721072107, 0x2107210721072107, 0x2107210721072107, 0x2107210721072107,
 0x2107210721072107, 0x2107210721072107, 0x2107210721072107, 0x2107210721072107,
 };
 
-u64 ovl_En_Clear_Tag_00000C98_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00000C98_Tex_WIDTH, ovl_En_Clear_Tag_00000C98_Tex_HEIGHT, 16)] = {
+u64 ovl_En_Clear_Tag_00000C98_Tex[] = {
 0xCE29BDA59CDF8C1D, 0x945DB563CE29DEAD, 0xE6EFE6EFE6F1E733, 0xE735E735E735E735,
 0xE735E735E733E733, 0xE6F1E6EFDEEDDEAD, 0xDEABDEABD66BD66B, 0xD66BD669D669D669,
 0xDEADCE29AD23945D, 0x9C9FBDA5DEADEF31, 0xF771F7B3F7B5FFB7, 0xFFB9FFFBFFFBFFFB,
@@ -298,7 +298,7 @@ u64 ovl_En_Clear_Tag_00000C98_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00000C98_Tex_WID
 0xC62BC5EBC5EBC5E9, 0xC5E9C5E7BDE7BDA5, 0xBDA5BDA5BDA7BDA5, 0xBDA5BDA5BDA5BDA5,
 };
 
-u64 ovl_En_Clear_Tag_00001498_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00001498_Tex_WIDTH, ovl_En_Clear_Tag_00001498_Tex_HEIGHT, 16)] = {
+u64 ovl_En_Clear_Tag_00001498_Tex[] = {
 0x0001000100010001, 0x0001000100010001, 0x0001000100010001, 0x0001000100010001,
 0x0001000100010001, 0x0001000100010001, 0x0001000100010001, 0x0001000100010001,
 0x0001000100010001, 0x0001000100010001, 0x0001000100010001, 0x0001000100010001,
@@ -429,7 +429,7 @@ u64 ovl_En_Clear_Tag_00001498_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00001498_Tex_WID
 0x0001000100010001, 0x0001000100010001, 0x0001000100010001, 0x0001000100010001,
 };
 
-u64 ovl_En_Clear_Tag_00002498_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00002498_Tex_WIDTH, ovl_En_Clear_Tag_00002498_Tex_HEIGHT, 16)] = {
+u64 ovl_En_Clear_Tag_00002498_Tex[] = {
 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF,
 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF,
 0xCE73CE73CE73CE73, 0xCE73CE73CE73CE73, 0xCE73CE73CE73CE73, 0xCE73CE73CE73CE73,
@@ -497,7 +497,7 @@ u64 ovl_En_Clear_Tag_00002498_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00002498_Tex_WID
 
 };
 
-u64 ovl_En_Clear_Tag_00002C98_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00002C98_Tex_WIDTH, ovl_En_Clear_Tag_00002C98_Tex_HEIGHT, 16)] = {
+u64 ovl_En_Clear_Tag_00002C98_Tex[] = {
 0x1157115711571957, 0x1957195919591959, 0x1959195919591959, 0x1959195911151115,
 0x1117115711571157, 0x1117111711171117, 0x1115111511151115, 0x1115111511150913,
 0x1157195719571959, 0x1959195919991999, 0x1999199919991957, 0x1957195711151115,
@@ -565,7 +565,7 @@ u64 ovl_En_Clear_Tag_00002C98_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00002C98_Tex_WID
 
 };
 
-u64 ovl_En_Clear_Tag_00003498_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00003498_Tex_WIDTH, ovl_En_Clear_Tag_00003498_Tex_HEIGHT, 16)] = {
+u64 ovl_En_Clear_Tag_00003498_Tex[] = {
 0xF777F777F777F777, 0xF777F777F777F777, 0xF777F777F777F777, 0xF7B9F7B9F7B9F7B9,
 0xF7B9F777F777F777, 0xF777F777F777F777, 0xF777F777F777F777, 0xF777F777F777F777,
 0xF777F777F777F777, 0xF777F777F777F777, 0xF777F777F777F7B9, 0xEF35EEB1E6B1EEF3,
@@ -633,7 +633,7 @@ u64 ovl_En_Clear_Tag_00003498_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00003498_Tex_WID
 
 };
 
-static Gfx gArwingLaserDL[14] = {
+Gfx gArwingLaserDL[] = {
     gsDPLoadTextureBlock(ovl_En_Clear_Tag_00003D68_Tex, G_IM_FMT_RGBA, G_IM_SIZ_16b,
  ovl_En_Clear_Tag_00003D68_Tex_WIDTH, ovl_En_Clear_Tag_00003D68_Tex_HEIGHT, 0, G_TX_NOMIRROR | G_TX_CLAMP,
  G_TX_NOMIRROR | G_TX_CLAMP, 4, 4, G_TX_NOLOD, G_TX_NOLOD),
@@ -647,7 +647,7 @@ static Gfx gArwingLaserDL[14] = {
 
 };
 
-static Vtx gArwingLaserVtx[6] = {
+Vtx gArwingLaserVtx[] = {
     VTX(     5,      0,     34,   0x1F8,   0x181, 0xFF, 0xFF, 0xFF, 0xFF), // 0
     VTX(     0,     -3,     34,   0x100,   0x181, 0xFF, 0xFF, 0xFF, 0xFF), // 1
     VTX(     0,      0,    -27,   0x100,    0x10, 0xFF, 0xFF, 0xFF, 0xFF), // 2
@@ -656,7 +656,7 @@ static Vtx gArwingLaserVtx[6] = {
     VTX(     0,      3,     34,   0x100,   0x181, 0xFF, 0xFF, 0xFF, 0xFF), // 5
 };
 
-u64 ovl_En_Clear_Tag_00003D68_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00003D68_Tex_WIDTH, ovl_En_Clear_Tag_00003D68_Tex_HEIGHT, 16)] = {
+u64 ovl_En_Clear_Tag_00003D68_Tex[] = {
 0x0341034103410341, 0x0341034103410341, 0x0341034103410341, 0x0341034103410341,
 0x0501050105010501, 0x0501050105010501, 0x0501050105010501, 0x0501050105010501,
 0x0681068106810681, 0x0681068106810681, 0x0681068106810681, 0x0681068106810681,
@@ -676,7 +676,7 @@ u64 ovl_En_Clear_Tag_00003D68_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00003D68_Tex_WID
 
 };
 
-static Vtx gArwingBackfireVtx[3] = {
+Vtx gArwingBackfireVtx[] = {
     VTX(     0,     60,      0,   0x100,  -0x100, 0xFF, 0xFF, 0xFF, 0xFF), // 0
     VTX(   -50,    -30,      0,   -0xAB,   0x200, 0xFF, 0xFF, 0xFF, 0xFF), // 1
     VTX(    50,    -30,      0,   0x2AB,   0x200, 0xFF, 0xFF, 0xFF, 0xFF), // 2
@@ -684,7 +684,7 @@ static Vtx gArwingBackfireVtx[3] = {
 
 };
 
-static Gfx gArwingBackfireDL[16] = {
+Gfx gArwingBackfireDL[] = {
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_NONE),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -701,7 +701,7 @@ static Gfx gArwingBackfireDL[16] = {
 
 };
 
-u64 ovl_En_Clear_Tag_00004018_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00004018_Tex_WIDTH, ovl_En_Clear_Tag_00004018_Tex_HEIGHT, 8)] = {
+u64 ovl_En_Clear_Tag_00004018_Tex[] = {
 0x0000000000000000, 0x0000000000000000, 0x0000000E243D453A, 0x1904010000000000,
 0x0000001E4B7B776E, 0x4F31010904000000, 0x00000930719ECBC6, 0x8868452D14000000,
 0x00031545AEDAF4F2, 0xC0A8805B2F0D0000, 0x00082769D2F6FEFC, 0xF2E8BB8C4B200800,
@@ -713,7 +713,7 @@ u64 ovl_En_Clear_Tag_00004018_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00004018_Tex_WID
 
 };
 
-u64 ovl_En_Clear_Tag_00004118_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00004118_Tex_WIDTH, ovl_En_Clear_Tag_00004118_Tex_HEIGHT, 16)] = {
+u64 ovl_En_Clear_Tag_00004118_Tex[] = {
 0x0000000000000000, 0x0000080018001840, 0x3040408028403080, 0x1840000000000000,
 0x0000000000001000, 0x2040284028403841, 0x4881408028402040, 0x2840080000000000,
 0x0000100028402840, 0x2840304120413881, 0x60C1384128412840, 0x2840184000000000,
@@ -732,7 +732,7 @@ u64 ovl_En_Clear_Tag_00004118_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00004118_Tex_WID
 0x2080308049005140, 0x59C259C45A064902, 0x514040C238C030C2, 0x414230C220801840,
 };
 
-static Vtx gArwingDebrisEffectVtx[3] = {
+Vtx gArwingDebrisEffectVtx[] = {
     VTX(    35,      0,     20,   0x263,   0x200, 0x00, 0x78, 0x00, 0xFF), // 0
     VTX(     0,      0,    -40,   0x100,   -0x66, 0x00, 0x78, 0x00, 0xFF), // 1
     VTX(   -35,      0,     20,   -0x63,   0x200, 0x00, 0x78, 0x00, 0xFF), // 2
@@ -740,7 +740,7 @@ static Vtx gArwingDebrisEffectVtx[3] = {
 
 };
 
-static Gfx gArwingDebrisEffectMaterialDL[16] = {
+Gfx gArwingDebrisEffectMaterialDL[] = {
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_NONE),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -756,14 +756,14 @@ static Gfx gArwingDebrisEffectMaterialDL[16] = {
 
 };
 
-static Gfx gArwingDebrisEffectDL[3] = {
+Gfx gArwingDebrisEffectDL[] = {
     gsSPVertex(&gArwingDebrisEffectVtx[0], 3, 0),
     gsSP1Triangle(0, 1, 2, 0),
     gsSPEndDisplayList(),
 
 };
 
-u64 ovl_En_Clear_Tag_000043E0_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_000043E0_Tex_WIDTH, ovl_En_Clear_Tag_000043E0_Tex_HEIGHT, 4)] = {
+u64 ovl_En_Clear_Tag_000043E0_Tex[] = {
 0x1113468ABCB98853, 0x22202452358ADE85, 0x1124579BCB766653, 0x345114444679DE84,
 0x422569BCD8644542, 0x256214545569FDA6, 0x43367ADEC7433331, 0x13511344457AEC85,
 0x43579BEFB6422210, 0x02211334568ADB75, 0x4469ADFFB6322210, 0x01211235689ADA65,
@@ -799,7 +799,7 @@ u64 ovl_En_Clear_Tag_000043E0_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_000043E0_Tex_WID
 
 };
 
-u64 ovl_En_Clear_Tag_000047E0_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_000047E0_Tex_WIDTH, ovl_En_Clear_Tag_000047E0_Tex_HEIGHT, 4)] = {
+u64 ovl_En_Clear_Tag_000047E0_Tex[] = {
 0x0000000000000000, 0x0000000000000000, 0x0000000000000010, 0x0000000000000000,
 0x0000000000000000, 0x0000110000000000, 0x0000001000001223, 0x2001211222100000,
 0x0000100122112454, 0x4123213565100000, 0x0000134542035677, 0x6446557887420000,
@@ -819,7 +819,7 @@ u64 ovl_En_Clear_Tag_000047E0_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_000047E0_Tex_WID
 
 };
 
-static Vtx gArwingFireEffectVtx[3] = {
+Vtx gArwingFireEffectVtx[] = {
     VTX(   -30,    -18,      0,  -0x200,   0x466, 0xFF, 0xFF, 0xFF, 0xFF), // 0
     VTX(    30,    -18,      0,   0x600,   0x444, 0xFF, 0xFF, 0xFF, 0xFF), // 1
     VTX(     0,     33,      0,   0x200,  -0x266, 0xFF, 0xFF, 0xFF, 0xFF), // 2
@@ -827,7 +827,7 @@ static Vtx gArwingFireEffectVtx[3] = {
 
 };
 
-static Gfx gArwingFireEffectMaterialDL[21] = {
+Gfx gArwingFireEffectMaterialDL[] = {
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_NONE),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -844,7 +844,7 @@ static Gfx gArwingFireEffectMaterialDL[21] = {
 
 };
 
-static Gfx gArwingFireEffectDL[4] = {
+Gfx gArwingFireEffectDL[] = {
     gsSPDisplayList(0x08000000),
     gsSPVertex(&gArwingFireEffectVtx[0], 3, 0),
     gsSP1Triangle(0, 1, 2, 0),
@@ -852,7 +852,7 @@ static Gfx gArwingFireEffectDL[4] = {
 
 };
 
-u64 ovl_En_Clear_Tag_00004AD8_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00004AD8_Tex_WIDTH, ovl_En_Clear_Tag_00004AD8_Tex_HEIGHT, 8)] = {
+u64 ovl_En_Clear_Tag_00004AD8_Tex[] = {
 0x0000000000000000, 0x0000000000000000, 0x0000000000000000, 0x0000000000000000,
 0x0000000000000000, 0x0000000000000000, 0x0000000000000000, 0x0000000000000000,
 0x0000000000000000, 0x0000000000000000, 0x0000000000000000, 0x0000000000000000,
@@ -984,7 +984,7 @@ u64 ovl_En_Clear_Tag_00004AD8_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00004AD8_Tex_WID
 
 };
 
-static Vtx gArwingFlashEffectVtx[4] = {
+Vtx gArwingFlashEffectVtx[] = {
     VTX(   -17,    -17,      0,     0x0,   0x800, 0xFF, 0xFF, 0xFF, 0xFF), // 0
     VTX(    17,    -17,      0,   0x800,   0x800, 0xFF, 0xFF, 0xFF, 0xFF), // 1
     VTX(    17,     17,      0,   0x800,     0x0, 0xFF, 0xFF, 0xFF, 0xFF), // 2
@@ -993,7 +993,7 @@ static Vtx gArwingFlashEffectVtx[4] = {
 
 };
 
-static Gfx gArwingFlashEffectDL[16] = {
+Gfx gArwingFlashEffectDL[] = {
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_NONE),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -1010,7 +1010,7 @@ static Gfx gArwingFlashEffectDL[16] = {
 
 };
 
-u64 ovl_En_Clear_Tag_00005B98_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00005B98_Tex_WIDTH, ovl_En_Clear_Tag_00005B98_Tex_HEIGHT, 4)] = {
+u64 ovl_En_Clear_Tag_00005B98_Tex[] = {
 0x0000000000000000, 0x0000000000000000, 0x0000000000000000, 0x0000000000000000,
 0x0000000000000111, 0x1110000000000000, 0x0000000000111222, 0x2221110000000000,
 0x0000000011223444, 0x4443221100000000, 0x0000000122345566, 0x6655432210000000,
@@ -1030,7 +1030,7 @@ u64 ovl_En_Clear_Tag_00005B98_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00005B98_Tex_WID
 
 };
 
-static Vtx gArwingFlashEffectGroundVtx[3] = {
+Vtx gArwingFlashEffectGroundVtx[] = {
     VTX(   -20,      0,     10,  -0x200,   0x400, 0xFF, 0xFF, 0xFF, 0xFF), // 0
     VTX(    20,      0,     10,   0x600,   0x400, 0xFF, 0xFF, 0xFF, 0xFF), // 1
     VTX(     0,      0,    -28,   0x200,  -0x39A, 0xFF, 0xFF, 0xFF, 0xFF), // 2
@@ -1038,7 +1038,7 @@ static Vtx gArwingFlashEffectGroundVtx[3] = {
 
 };
 
-static Gfx gArwingFlashEffectGroundDL[17] = {
+Gfx gArwingFlashEffectGroundDL[] = {
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_NONE),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
@@ -1055,7 +1055,7 @@ static Gfx gArwingFlashEffectGroundDL[17] = {
 
 };
 
-u64 ovl_En_Clear_Tag_00005E50_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00005E50_Tex_WIDTH, ovl_En_Clear_Tag_00005E50_Tex_HEIGHT, 8)] = {
+u64 ovl_En_Clear_Tag_00005E50_Tex[] = {
 0x0000000000000000, 0x0000000000000000, 0x0000000000000000, 0x0000000000000000,
 0x0000000000000000, 0x0000000000001050, 0x5010000000000000, 0x0000000000000000,
 0x0000000000000000, 0x0000000000003080, 0x8030000000000000, 0x0000000000000000,
@@ -1091,7 +1091,7 @@ u64 ovl_En_Clear_Tag_00005E50_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00005E50_Tex_WID
 
 };
 
-static Vtx gArwingShadowVtx[3] = {
+Vtx gArwingShadowVtx[] = {
     VTX(     0,      0,     20,   0x200,   -0xCC, 0x00, 0x78, 0x00, 0xFF), // 0
     VTX(   -50,      0,    -88,   -0x80,   0x400, 0x00, 0x78, 0x00, 0xFF), // 1
     VTX(    50,      0,    -88,   0x480,   0x400, 0x00, 0x78, 0x00, 0xFF), // 2
@@ -1099,7 +1099,7 @@ static Vtx gArwingShadowVtx[3] = {
 
 };
 
-static Gfx gArwingShadowDL[16] = {
+Gfx gArwingShadowDL[] = {
     gsDPPipeSync(),
     gsDPSetTextureLUT(G_TT_NONE),
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
