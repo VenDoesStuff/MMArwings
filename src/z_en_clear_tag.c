@@ -11,21 +11,21 @@
     (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_UPDATE_CULLING_DISABLED | \
      ACTOR_FLAG_DRAW_CULLING_DISABLED)
 
-void EnClearTag_Init(Actor* thisx, PlayState* play);
-void EnClearTag_Destroy(Actor* thisx, PlayState* play);
-void EnClearTag_Update(Actor* thisx, PlayState* play2);
-void EnClearTag_Draw(Actor* thisx, PlayState* play);
+void OoTArwing_Init(Actor* thisx, PlayState* play);
+void OoTArwing_Destroy(Actor* thisx, PlayState* play);
+void OoTArwing_Update(Actor* thisx, PlayState* play2);
+void OoTArwing_Draw(Actor* thisx, PlayState* play);
 
-void EnClearTag_UpdateEffects(PlayState* play);
-void EnClearTag_DrawEffects(PlayState* play);
+void OoTArwing_UpdateEffects(PlayState* play);
+void OoTArwing_DrawEffects(PlayState* play);
 
-void EnClearTag_CreateDebrisEffect(PlayState* play, Vec3f* position, Vec3f* velocity, Vec3f* acceleration, f32 scale,
+void OoTArwing_CreateDebrisEffect(PlayState* play, Vec3f* position, Vec3f* velocity, Vec3f* acceleration, f32 scale,
                                    f32 floorHeight);
-void EnClearTag_CreateFireEffect(PlayState* play, Vec3f* pos, f32 scale);
-void EnClearTag_CreateSmokeEffect(PlayState* play, Vec3f* position, f32 scale);
-void EnClearTag_CreateFlashEffect(PlayState* play, Vec3f* position, f32 scale, f32 floorHeight, Vec3f* floorTangent);
+void OoTArwing_CreateFireEffect(PlayState* play, Vec3f* pos, f32 scale);
+void OoTArwing_CreateSmokeEffect(PlayState* play, Vec3f* position, f32 scale);
+void OoTArwing_CreateFlashEffect(PlayState* play, Vec3f* position, f32 scale, f32 floorHeight, Vec3f* floorTangent);
 
-void EnClearTag_CalculateFloorTangent(EnClearTag* this);
+void OoTArwing_CalculateFloorTangent(EnClearTag* this);
 
 ActorProfile En_Clear_Tag_Profile = {
     /**/ ACTOR_EN_CLEAR_TAG,
@@ -33,10 +33,10 @@ ActorProfile En_Clear_Tag_Profile = {
     /**/ FLAGS,
     /**/ GAMEPLAY_KEEP,
     /**/ sizeof(EnClearTag),
-    /**/ EnClearTag_Init,
-    /**/ EnClearTag_Destroy,
-    /**/ EnClearTag_Update,
-    /**/ EnClearTag_Draw,
+    /**/ OoTArwing_Init,
+    /**/ OoTArwing_Destroy,
+    /**/ OoTArwing_Update,
+    /**/ OoTArwing_Draw,
 };
 
 s16 CUSTOM_ACTOR_BG_HAKA = ACTOR_ID_MAX;
@@ -109,7 +109,7 @@ static EnClearTagEffect sEffects[CLEAR_TAG_EFFECT_COUNT];
  * Creates a debris effect.
  * Debris effects are spawned when the Arwing dies. It spawns fire effects.
  */
-void EnClearTag_CreateDebrisEffect(PlayState* play, Vec3f* position, Vec3f* velocity, Vec3f* acceleration, f32 scale,
+void OoTArwing_CreateDebrisEffect(PlayState* play, Vec3f* position, Vec3f* velocity, Vec3f* acceleration, f32 scale,
                                    f32 floorHeight) {
     s16 i;
     EnClearTagEffect* effect = (EnClearTagEffect*)play->specialEffects;
@@ -144,7 +144,7 @@ void EnClearTag_CreateDebrisEffect(PlayState* play, Vec3f* position, Vec3f* velo
  * Creates a fire effect.
  * Fire effects are spawned by debris effects. Fire effects spawn smoke effects
  */
-void EnClearTag_CreateFireEffect(PlayState* play, Vec3f* pos, f32 scale) {
+void OoTArwing_CreateFireEffect(PlayState* play, Vec3f* pos, f32 scale) {
     s16 i;
     EnClearTagEffect* effect = (EnClearTagEffect*)play->specialEffects;
 
@@ -172,7 +172,7 @@ void EnClearTag_CreateFireEffect(PlayState* play, Vec3f* pos, f32 scale) {
  * Creates a smoke effect.
  * Smoke effects are spawned by fire effects.
  */
-void EnClearTag_CreateSmokeEffect(PlayState* play, Vec3f* position, f32 scale) {
+void OoTArwing_CreateSmokeEffect(PlayState* play, Vec3f* position, f32 scale) {
     s16 i;
     EnClearTagEffect* effect = (EnClearTagEffect*)play->specialEffects;
 
@@ -207,7 +207,7 @@ void EnClearTag_CreateSmokeEffect(PlayState* play, Vec3f* position, f32 scale) {
  * Flash effects are spawned when the Arwing dies.
  * Flash effects two components: 1) a billboard flash, and 2) a light effect on the ground.
  */
-void EnClearTag_CreateFlashEffect(PlayState* play, Vec3f* position, f32 scale, f32 floorHeight, Vec3f* floorTangent) {
+void OoTArwing_CreateFlashEffect(PlayState* play, Vec3f* position, f32 scale, f32 floorHeight, Vec3f* floorTangent) {
     s16 i;
     EnClearTagEffect* effect = (EnClearTagEffect*)play->specialEffects;
 
@@ -237,7 +237,7 @@ void EnClearTag_CreateFlashEffect(PlayState* play, Vec3f* position, f32 scale, f
  * EnClear_Tag destructor.
  * This just destroys the collider.
  */
-void EnClearTag_Destroy(Actor* thisx, PlayState* play) {
+void OoTArwing_Destroy(Actor* thisx, PlayState* play) {
     EnClearTag* this = (EnClearTag*)thisx;
 
     Collider_DestroyCylinder(play, &this->collider);
@@ -247,7 +247,7 @@ void EnClearTag_Destroy(Actor* thisx, PlayState* play) {
  * EnClear_Tag constructor.
  * This allocates a collider, initializes effects, and sets up ClearTag instance data.
  */
-void EnClearTag_Init(Actor* thisx, PlayState* play) {
+void OoTArwing_Init(Actor* thisx, PlayState* play) {
     EnClearTag* this = (EnClearTag*)thisx;
     s32 defaultCutsceneTimer = 100;
     s16 i;
@@ -306,7 +306,7 @@ void EnClearTag_Init(Actor* thisx, PlayState* play) {
  * Calculate a floor tangent.
  * This is used for the ground flash display lists and Arwing shadow display lists to snap onto the floor.
  */
-void EnClearTag_CalculateFloorTangent(EnClearTag* this) {
+void OoTArwing_CalculateFloorTangent(EnClearTag* this) {
     f32 x;
     f32 y;
     f32 z;
@@ -336,7 +336,7 @@ void EnClearTag_CalculateFloorTangent(EnClearTag* this) {
  * This function controls the cutscene that plays when the Arwing has params for
  * cutscene. The cutscene stops playing when the Arwing is a specified distance from the starting point.
  */
-void EnClearTag_Update(Actor* thisx, PlayState* play2) {
+void OoTArwing_Update(Actor* thisx, PlayState* play2) {
     u8 hasAtHit = false;
     s16 i;
     s16 xRotationTarget;
@@ -541,12 +541,12 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
                 if (this->timers[CLEAR_TAG_TIMER_ARWING_UPDATE_BG_INFO] == 0) {
                     Actor_UpdateBgCheckInfo(play, &this->actor, 50.0f, 30.0f, 100.0f,
                                             UPDBGCHECKINFO_FLAG_1 | UPDBGCHECKINFO_FLAG_4);
-                    EnClearTag_CalculateFloorTangent(this);
+                    OoTArwing_CalculateFloorTangent(this);
                 }
 
                 if (this->state == CLEAR_TAG_STATE_CRASHING) {
                     // Create fire effects while the Arwing crashes.
-                    EnClearTag_CreateFireEffect(play, &this->actor.world.pos, 1.0f);
+                    OoTArwing_CreateFireEffect(play, &this->actor.world.pos, 1.0f);
 
                     // Causes the Arwing to roll around seemingly randomly while crashing.
                     this->roll -= 0.5f;
@@ -671,11 +671,11 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
         crashEffectLocation.x = this->actor.world.pos.x;
         crashEffectLocation.y = (this->actor.world.pos.y + 40.0f) - 30.0f;
         crashEffectLocation.z = this->actor.world.pos.z;
-        EnClearTag_CreateFlashEffect(play, &crashEffectLocation, 6.0f, this->actor.floorHeight, &this->floorTangent);
+        OoTArwing_CreateFlashEffect(play, &crashEffectLocation, 6.0f, this->actor.floorHeight, &this->floorTangent);
 
         // Spawn smoke effect.
         crashEffectLocation.y = (this->actor.world.pos.y + 30.0f) - 50.0f;
-        EnClearTag_CreateSmokeEffect(play, &crashEffectLocation, 3.0f);
+        OoTArwing_CreateSmokeEffect(play, &crashEffectLocation, 3.0f);
         crashEffectLocation.y = this->actor.world.pos.y;
 
         // Spawn debris effects.
@@ -690,7 +690,7 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
             debrisEffectAcceleration.y = -1.0f;
             debrisEffectAcceleration.z = 0.0f;
 
-            EnClearTag_CreateDebrisEffect(play, &crashEffectLocation, &crashEffectVelocity, &debrisEffectAcceleration,
+            OoTArwing_CreateDebrisEffect(play, &crashEffectLocation, &crashEffectVelocity, &debrisEffectAcceleration,
                                           Rand_ZeroFloat(0.15f) + 0.075f, this->actor.floorHeight);
         }
     }
@@ -701,7 +701,7 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
             Actor_Kill(&this->actor);
         }
 
-        EnClearTag_UpdateEffects(play);
+        OoTArwing_UpdateEffects(play);
     }
 }
 
@@ -710,7 +710,7 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
  * Laser clear tag type will draw two lasers.
  * Arwing clear tag types will draw the Arwing, the backfire, and a shadow.
  */
-void EnClearTag_Draw(Actor* thisx, PlayState* play) {
+void OoTArwing_Draw(Actor* thisx, PlayState* play) {
     s32 pad;
     EnClearTag* this = (EnClearTag*)thisx;
 
@@ -786,7 +786,7 @@ void EnClearTag_Draw(Actor* thisx, PlayState* play) {
     }
 
     if (this->drawMode != CLEAR_TAG_DRAW_MODE_ARWING) {
-        EnClearTag_DrawEffects(play);
+        OoTArwing_DrawEffects(play);
     }
 
     CLOSE_DISPS(play->state.gfxCtx);
@@ -798,7 +798,7 @@ void EnClearTag_Draw(Actor* thisx, PlayState* play) {
  * Moves and bounces debris effects.
  * Fades most effects out of view. When effects are completely faded away they are removed.
  */
-void EnClearTag_UpdateEffects(PlayState* play) {
+void OoTArwing_UpdateEffects(PlayState* play) {
     EnClearTagEffect* effect = (EnClearTagEffect*)play->specialEffects;
     s16 i;
     f32 originalYPosition;
@@ -859,7 +859,7 @@ void EnClearTag_UpdateEffects(PlayState* play) {
                 // Spawn a fire effect every 3 frames.
                 if (effect->random >= 3) {
                     effect->random = 0;
-                    EnClearTag_CreateFireEffect(play, &effect->position, effect->scale * 8.0f);
+                    OoTArwing_CreateFireEffect(play, &effect->position, effect->scale * 8.0f);
                 }
             } else if (effect->type == CLEAR_TAG_EFFECT_FIRE) {
                 // Fade the fire effect.
@@ -912,7 +912,7 @@ void EnClearTag_UpdateEffects(PlayState* play) {
  * Each effect type is drawn before the next. The function will apply a material that applies to all effects of that
  * type while drawing the first effect of that type.
  */
-void EnClearTag_DrawEffects(PlayState* play) {
+void OoTArwing_DrawEffects(PlayState* play) {
     s16 i;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
     u8 materialFlag = 0;
