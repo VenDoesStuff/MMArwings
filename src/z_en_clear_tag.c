@@ -1,17 +1,9 @@
-#include "z_en_clear_tag.h"
+#include "modding.h"
+#include "global.h"
+#include "recomputils.h"
+#include "recompconfig.h"
 
-#include "libc64/math64.h"
-#include "libc64/qrand.h"
-#include "attributes.h"
-#include "gfx.h"
-#include "gfx_setupdl.h"
-#include "printf.h"
-#include "rand.h"
-#include "sfx.h"
-#include "sys_matrix.h"
-#include "z_lib.h"
-#include "play_state.h"
-#include "player.h"
+#include "z_en_clear_tag.h"
 
 #define FLAGS                                                                                 \
     (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_UPDATE_CULLING_DISABLED | \
@@ -94,7 +86,7 @@ static UNK_TYPE4 D_809D5C9C = 0; // unused
 
 static EnClearTagEffect sEffects[CLEAR_TAG_EFFECT_COUNT];
 
-#include "assets/overlays/ovl_En_Clear_Tag/ovl_En_Clear_Tag.c"
+#include "ovl_En_Clear_Tag/ovl_En_Clear_Tag.h"
 
 /**
  * Creates a debris effect.
