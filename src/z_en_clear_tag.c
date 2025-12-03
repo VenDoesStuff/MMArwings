@@ -364,7 +364,8 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
                     this->acceleration.y = Rand_CenteredFloat(15.0f);
                     this->acceleration.z = Rand_CenteredFloat(15.0f);
 
-                    Actor_PlaySfx(&this->actor, NA_SE_EN_FANTOM_THUNDER_GND);
+                    // Actor_PlaySfx(&this->actor, NA_SE_EN_FANTOM_THUNDER_GND);
+                    Actor_PlaySfx(&this->actor, NA_SE_EN_COMMON_THUNDER_THR);
                     this->actor.colChkInfo.health--;
                     if ((s8)this->actor.colChkInfo.health <= 0) {
                         this->state = CLEAR_TAG_STATE_CRASHING;
@@ -522,7 +523,7 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
 
                 if (this->timers[CLEAR_TAG_TIMER_ARWING_UPDATE_BG_INFO] == 0) {
                     Actor_UpdateBgCheckInfo(play, &this->actor, 50.0f, 30.0f, 100.0f,
-                                            UPDBGCHECKINFO_FLAG_0 | UPDBGCHECKINFO_FLAG_2);
+                                            UPDBGCHECKINFO_FLAG_1 | UPDBGCHECKINFO_FLAG_4);
                     EnClearTag_CalculateFloorTangent(this);
                 }
 
@@ -535,7 +536,8 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
                     this->actor.velocity.y -= 0.2f;
                     this->actor.shape.rot.x += 0x10;
 
-                    Actor_PlaySfx(&this->actor, NA_SE_EN_DODO_K_BREATH - SFX_FLAG);
+                    // Actor_PlaySfx(&this->actor, NA_SE_EN_DODO_K_BREATH - SFX_FLAG);
+                    Actor_PlaySfx(&this->actor, NA_SE_EN_DODO_J_BREATH - SFX_FLAG);
 
                     // Check if the Arwing has hit the ground or a wall.
                     if (this->actor.bgCheckFlags & (BGCHECKFLAG_GROUND | BGCHECKFLAG_WALL)) {
@@ -567,7 +569,7 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
                 Collider_UpdateCylinder(&this->actor, &this->collider);
                 CollisionCheck_SetAT(play, &play->colChkCtx, &this->collider.base);
                 Actor_UpdateBgCheckInfo(play, &this->actor, 50.0f, 80.0f, 100.0f,
-                                        UPDBGCHECKINFO_FLAG_0 | UPDBGCHECKINFO_FLAG_2);
+                                        UPDBGCHECKINFO_FLAG_1 | UPDBGCHECKINFO_FLAG_4);
 
                 // Check if the laser has hit a target, timed out, or hit the ground or a wall.
                 if ((this->actor.bgCheckFlags & (BGCHECKFLAG_GROUND | BGCHECKFLAG_WALL)) || hasAtHit ||
@@ -576,7 +578,8 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
                     Actor_Kill(&this->actor);
                     // Player laser sound effect if the laser did not time out.
                     if (this->timers[CLEAR_TAG_TIMER_LASER_DEATH] != 0) {
-                        SfxSource_PlaySfxAtFixedWorldPos(play, &this->actor.world.pos, 20, NA_SE_EN_FANTOM_THUNDER_GND);
+                        // SfxSource_PlaySfxAtFixedWorldPos(play, &this->actor.world.pos, 20, NA_SE_EN_FANTOM_THUNDER_GND);
+                        SfxSource_PlaySfxAtFixedWorldPos(play, &this->actor.world.pos, 20, NA_SE_EN_COMMON_THUNDER_THR);
                     }
                 }
                 break;
@@ -600,8 +603,8 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
                         this->cutsceneMode = CLEAR_TAG_CUTSCENE_MODE_PLAY;
                         Cutscene_StartManual(play, &play->csCtx);
                         this->subCamId = Play_CreateSubCamera(play);
-                        Play_ChangeCameraStatus(play, CAM_ID_MAIN, CAM_STAT_WAIT);
-                        Play_ChangeCameraStatus(play, this->subCamId, CAM_STAT_ACTIVE);
+                        Play_ChangeCameraStatus(play, CAM_ID_MAIN, CAM_STATUS_WAIT);
+                        Play_ChangeCameraStatus(play, this->subCamId, CAM_STATUS_ACTIVE);
                         FALLTHROUGH;
                     case CLEAR_TAG_CUTSCENE_MODE_PLAY:
                         // Update the Arwing cutscene camera to spin around in a circle.
