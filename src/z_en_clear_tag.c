@@ -382,7 +382,7 @@ void OoTArwing_Update(Actor* thisx, PlayState* play2) {
                     this->acceleration.z = Rand_CenteredFloat(15.0f);
 
                     // Actor_PlaySfx(&this->actor, NA_SE_EN_FANTOM_THUNDER_GND);
-                    Actor_PlaySfx(&this->actor, NA_SE_EN_COMMON_THUNDER_THR);
+                    Actor_PlaySfx(&this->actor, NA_SE_EN_COMMON_E_BALL);
                     this->actor.colChkInfo.health--;
                     if ((s8)this->actor.colChkInfo.health <= 0) {
                         this->state = CLEAR_TAG_STATE_CRASHING;
@@ -599,7 +599,7 @@ void OoTArwing_Update(Actor* thisx, PlayState* play2) {
                     // Player laser sound effect if the laser did not time out.
                     if (this->timers[CLEAR_TAG_TIMER_LASER_DEATH] != 0) {
                         // SoundSource_PlaySfxAtFixedWorldPos(play, &this->actor.world.pos, 20, NA_SE_EN_FANTOM_THUNDER_GND);
-                        SoundSource_PlaySfxAtFixedWorldPos(play, &this->actor.world.pos, 20, NA_SE_EN_COMMON_THUNDER_THR);
+                        SoundSource_PlaySfxAtFixedWorldPos(play, &this->actor.world.pos, 20, NA_SE_EN_COMMON_E_BALL_HIT);
                     }
                 }
                 break;
