@@ -1,6 +1,3 @@
-#ifndef OVL_EN_CLEAR_TAG_H
-#define OVL_EN_CLEAR_TAG_H
-
 #include "tex_len.h"
 #include "ultra64.h"
 
@@ -64,5 +61,3 @@ static Gfx gArwingFlashEffectGroundDL[17];
 extern u64 ovl_En_Clear_Tag_00005E50_Tex[TEX_LEN(u64, ovl_En_Clear_Tag_00005E50_Tex_WIDTH, ovl_En_Clear_Tag_00005E50_Tex_HEIGHT, 8)];
 static Vtx gArwingShadowVtx[3];
 static Gfx gArwingShadowDL[16];
-
-#endif
