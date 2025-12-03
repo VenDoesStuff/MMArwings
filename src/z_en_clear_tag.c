@@ -37,6 +37,21 @@ ActorProfile En_Clear_Tag_Profile = {
     /**/ EnClearTag_Draw,
 };
 
+s16 CUSTOM_ACTOR_BG_HAKA = ACTOR_ID_MAX;
+
+RECOMP_CALLBACK("*", recomp_on_init) 
+void BgHaka_OnRecompInit() {
+    CUSTOM_ACTOR_BG_HAKA = CustomActor_Register(&En_Clear_Tag_Profile);
+}
+
+// @ProxyMM Example spawning this actor in south clock town.
+RECOMP_HOOK("Actor_SpawnTransitionActors")
+void BgHaka_OnRoomLoad(PlayState* play, ActorContext* actorCtx) {
+    if (play->sceneId == SCENE_CLOCKTOWER) {
+        Actor_SpawnAsChildAndCutscene(&play->actorCtx, play, CUSTOM_ACTOR_BG_HAKA, -367.0f, 0.0f, -245.0f, 0, 0x8000, 0, 0, 0, 0, 0);
+    }
+}
+
 static u8 sIsEffectsInitialized = false;
 
 static Vec3f sZeroVector = { 0.0f, 0.0f, 0.0f };
