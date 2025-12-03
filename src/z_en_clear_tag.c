@@ -693,24 +693,24 @@ void EnClearTag_Draw(Actor* thisx, PlayState* play) {
     s32 pad;
     EnClearTag* this = (EnClearTag*)thisx;
 
-    OPEN_DISPS(play->state.gfxCtx, "../z_en_clear_tag.c", 983);
+    OPEN_DISPS(play->state.gfxCtx);
     if (this->drawMode != CLEAR_TAG_DRAW_MODE_EFFECT) {
-        Gfx_SetupDL_25Xlu(play->state.gfxCtx);
+        Gfx_SetupDL25_Xlu(play->state.gfxCtx);
 
         if (this->state >= CLEAR_TAG_STATE_LASER) {
             // Draw Arwing lasers.
             gDPSetPrimColor(POLY_XLU_DISP++, 0, 0, 0, 255, 0, 255);
 
             Matrix_Translate(25.0f, 0.0f, 0.0f, MTXMODE_APPLY);
-            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, play->state.gfxCtx, "../z_en_clear_tag.c", 1004);
+            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, play->state.gfxCtx);
             gSPDisplayList(POLY_XLU_DISP++, gArwingLaserDL);
 
             Matrix_Translate(-50.0f, 0.0f, 0.0f, MTXMODE_APPLY);
-            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, play->state.gfxCtx, "../z_en_clear_tag.c", 1011);
+            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, play->state.gfxCtx);
             gSPDisplayList(POLY_XLU_DISP++, gArwingLaserDL);
         } else {
             // Draw the Arwing itself.
-            Gfx_SetupDL_25Opa(play->state.gfxCtx);
+            Gfx_SetupDL25_Opa(play->state.gfxCtx);
             gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, 255, 255, 255, 255);
             if (this->crashingTimer != 0) {
                 f32 xRotation;
@@ -719,11 +719,11 @@ void EnClearTag_Draw(Actor* thisx, PlayState* play) {
 
                 xRotation = Math_SinS(this->frameCounter * 0x3000) * scaledCrashingTimer;
                 yRotation = Math_SinS(this->frameCounter * 0x3700) * scaledCrashingTimer;
-                Matrix_RotateX(xRotation, MTXMODE_APPLY);
-                Matrix_RotateY(yRotation, MTXMODE_APPLY);
+                Matrix_RotateXF(xRotation, MTXMODE_APPLY);
+                Matrix_RotateYF(yRotation, MTXMODE_APPLY);
             }
-            Matrix_RotateZ(this->roll, MTXMODE_APPLY);
-            MATRIX_FINALIZE_AND_LOAD(POLY_OPA_DISP++, play->state.gfxCtx, "../z_en_clear_tag.c", 1030);
+            Matrix_RotateZF(this->roll, MTXMODE_APPLY);
+            MATRIX_FINALIZE_AND_LOAD(POLY_OPA_DISP++, play->state.gfxCtx);
             gSPDisplayList(POLY_OPA_DISP++, gArwingDL);
 
             // Draw the Arwing Backfire
@@ -736,18 +736,18 @@ void EnClearTag_Draw(Actor* thisx, PlayState* play) {
             gDPSetPrimColor(POLY_XLU_DISP++, 0, 0, 255, 255, 200, 155);
             gDPPipeSync(POLY_XLU_DISP++);
             gDPSetEnvColor(POLY_XLU_DISP++, 255, 50, 0, 0);
-            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, play->state.gfxCtx, "../z_en_clear_tag.c", 1067);
+            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, play->state.gfxCtx);
             gSPDisplayList(POLY_XLU_DISP++, gArwingBackfireDL);
 
             // Draw the Arwing shadow.
             gDPSetPrimColor(POLY_XLU_DISP++, 0, 0, 0, 0, 0, 130);
             Matrix_Translate(this->actor.world.pos.x, this->actor.floorHeight, this->actor.world.pos.z, MTXMODE_NEW);
-            Matrix_RotateX(this->floorTangent.x, MTXMODE_APPLY);
-            Matrix_RotateZ(this->floorTangent.z, MTXMODE_APPLY);
+            Matrix_RotateXF(this->floorTangent.x, MTXMODE_APPLY);
+            Matrix_RotateZF(this->floorTangent.z, MTXMODE_APPLY);
             Matrix_Scale(this->actor.scale.x + 0.35f, 0.0f, this->actor.scale.z + 0.35f, MTXMODE_APPLY);
-            Matrix_RotateY(BINANG_TO_RAD_ALT(this->actor.shape.rot.y), MTXMODE_APPLY);
-            Matrix_RotateX(BINANG_TO_RAD_ALT(this->actor.shape.rot.x), MTXMODE_APPLY);
-            Matrix_RotateZ(BINANG_TO_RAD_ALT(this->actor.shape.rot.z), MTXMODE_APPLY);
+            Matrix_RotateYF(BINANG_TO_RAD_ALT(this->actor.shape.rot.y), MTXMODE_APPLY);
+            Matrix_RotateXF(BINANG_TO_RAD_ALT(this->actor.shape.rot.x), MTXMODE_APPLY);
+            Matrix_RotateZF(BINANG_TO_RAD_ALT(this->actor.shape.rot.z), MTXMODE_APPLY);
             if (this->crashingTimer != 0) {
                 f32 xRotation;
                 f32 yRotation;
@@ -755,11 +755,11 @@ void EnClearTag_Draw(Actor* thisx, PlayState* play) {
 
                 xRotation = Math_SinS(this->frameCounter * 0x3000) * scaledCrashingTimer;
                 yRotation = Math_SinS(this->frameCounter * 0x3700) * scaledCrashingTimer;
-                Matrix_RotateX(xRotation, MTXMODE_APPLY);
-                Matrix_RotateY(yRotation, MTXMODE_APPLY);
+                Matrix_RotateXF(xRotation, MTXMODE_APPLY);
+                Matrix_RotateYF(yRotation, MTXMODE_APPLY);
             }
-            Matrix_RotateZ(this->roll, MTXMODE_APPLY);
-            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, play->state.gfxCtx, "../z_en_clear_tag.c", 1104);
+            Matrix_RotateZF(this->roll, MTXMODE_APPLY);
+            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, play->state.gfxCtx);
             gSPDisplayList(POLY_XLU_DISP++, gArwingShadowDL);
         }
     }
@@ -768,7 +768,7 @@ void EnClearTag_Draw(Actor* thisx, PlayState* play) {
         EnClearTag_DrawEffects(play);
     }
 
-    CLOSE_DISPS(play->state.gfxCtx, "../z_en_clear_tag.c", 1119);
+    CLOSE_DISPS(play->state.gfxCtx);
 }
 
 /**
@@ -898,9 +898,10 @@ void EnClearTag_DrawEffects(PlayState* play) {
     EnClearTagEffect* effect = (EnClearTagEffect*)play->specialEffects;
     EnClearTagEffect* firstEffect = effect;
 
-    OPEN_DISPS(gfxCtx, "../z_en_clear_tag.c", 1288);
-    Gfx_SetupDL_25Opa(play->state.gfxCtx);
-    Gfx_SetupDL_25Xlu(play->state.gfxCtx);
+    OPEN_DISPS(gfxCtx);
+
+    Gfx_SetupDL25_Opa(play->state.gfxCtx);
+    Gfx_SetupDL25_Xlu(play->state.gfxCtx);
 
     // Draw all Debris effects.
     for (i = 0; i < CLEAR_TAG_EFFECT_COUNT; i++, effect++) {
@@ -914,9 +915,9 @@ void EnClearTag_DrawEffects(PlayState* play) {
             // Draw the debris effect.
             Matrix_Translate(effect->position.x, effect->position.y, effect->position.z, MTXMODE_NEW);
             Matrix_Scale(effect->scale, effect->scale, effect->scale, MTXMODE_APPLY);
-            Matrix_RotateY(effect->rotationY, MTXMODE_APPLY);
-            Matrix_RotateX(effect->rotationX, MTXMODE_APPLY);
-            MATRIX_FINALIZE_AND_LOAD(POLY_OPA_DISP++, gfxCtx, "../z_en_clear_tag.c", 1307);
+            Matrix_RotateYF(effect->rotationY, MTXMODE_APPLY);
+            Matrix_RotateXFApply(effect->rotationX);
+            MATRIX_FINALIZE_AND_LOAD(POLY_OPA_DISP++, gfxCtx);
             gSPDisplayList(POLY_OPA_DISP++, gArwingDebrisEffectDL);
         }
     }
@@ -936,10 +937,10 @@ void EnClearTag_DrawEffects(PlayState* play) {
             // Draw the ground flash effect.
             gDPSetPrimColor(POLY_XLU_DISP++, 0, 0, 255, 255, 200, (s8)effect->primColor.a);
             Matrix_Translate(effect->position.x, effect->floorHeight, effect->position.z, MTXMODE_NEW);
-            Matrix_RotateX(effect->floorTangent.x, MTXMODE_APPLY);
-            Matrix_RotateZ(effect->floorTangent.z, MTXMODE_APPLY);
+            Matrix_RotateXF(effect->floorTangent.x, MTXMODE_APPLY);
+            Matrix_RotateZF(effect->floorTangent.z, MTXMODE_APPLY);
             Matrix_Scale(effect->scale + effect->scale, 1.0f, effect->scale * 2.0f, MTXMODE_APPLY);
-            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, gfxCtx, "../z_en_clear_tag.c", 1342);
+            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, gfxCtx);
             gSPDisplayList(POLY_XLU_DISP++, gArwingFlashEffectGroundDL);
         }
     }
@@ -968,7 +969,7 @@ void EnClearTag_DrawEffects(PlayState* play) {
             Matrix_ReplaceRotation(&play->billboardMtxF);
             Matrix_Scale(effect->scale, effect->scale, 1.0f, MTXMODE_APPLY);
             Matrix_Translate(0.0f, 20.0f, 0.0f, MTXMODE_APPLY);
-            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, gfxCtx, "../z_en_clear_tag.c", 1392);
+            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, gfxCtx);
             gSPDisplayList(POLY_XLU_DISP++, gArwingFireEffectDL);
         }
     }
@@ -993,7 +994,7 @@ void EnClearTag_DrawEffects(PlayState* play) {
             Matrix_Translate(effect->position.x, effect->position.y, effect->position.z, MTXMODE_NEW);
             Matrix_ReplaceRotation(&play->billboardMtxF);
             Matrix_Scale(effect->scale, effect->scale, 1.0f, MTXMODE_APPLY);
-            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, gfxCtx, "../z_en_clear_tag.c", 1439);
+            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, gfxCtx);
             gSPDisplayList(POLY_XLU_DISP++, gArwingFireEffectDL);
         }
     }
@@ -1015,10 +1016,10 @@ void EnClearTag_DrawEffects(PlayState* play) {
             Matrix_Translate(effect->position.x, effect->position.y, effect->position.z, MTXMODE_NEW);
             Matrix_ReplaceRotation(&play->billboardMtxF);
             Matrix_Scale(effect->scale, effect->scale, 1.0f, MTXMODE_APPLY);
-            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, gfxCtx, "../z_en_clear_tag.c", 1470);
+            MATRIX_FINALIZE_AND_LOAD(POLY_XLU_DISP++, gfxCtx);
             gSPDisplayList(POLY_XLU_DISP++, gArwingFlashEffectDL);
         }
     }
 
-    CLOSE_DISPS(gfxCtx, "../z_en_clear_tag.c", 1477);
+    CLOSE_DISPS(play->state.gfxCtx);
 }
