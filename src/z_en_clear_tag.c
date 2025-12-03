@@ -243,7 +243,7 @@ void EnClearTag_Init(Actor* thisx, PlayState* play) {
         this->state = CLEAR_TAG_STATE_LASER;
         this->timers[CLEAR_TAG_TIMER_LASER_DEATH] = 70;
         this->actor.speed = 35.0f;
-        Actor_UpdateVelocityXYZ(&this->actor);
+        Actor_UpdateVelocityWithoutGravity(&this->actor);
         for (j = 0; j <= 0; j++) {
             Actor_UpdatePos(&this->actor);
         }
@@ -253,7 +253,7 @@ void EnClearTag_Init(Actor* thisx, PlayState* play) {
         this->actor.speed = 70.0f;
         this->actor.shape.rot.x = -this->actor.shape.rot.x;
 
-        Actor_UpdateVelocityXYZ(&this->actor);
+        Actor_UpdateVelocityWithoutGravity(&this->actor);
         Collider_SetCylinder(play, &this->collider, &this->actor, &sLaserCylinderInit);
         Actor_PlaySfx(&this->actor, NA_SE_IT_SWORD_REFLECT_MG);
     } else { // Initialize the Arwing.
@@ -485,7 +485,7 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
                 this->actor.shape.rot.x = -this->actor.shape.rot.x;
 
                 // Update the Arwing's velocity.
-                Actor_UpdateVelocityXYZ(&this->actor);
+                Actor_UpdateVelocityWithoutGravity(&this->actor);
                 this->actor.velocity.x += this->acceleration.x;
                 this->actor.velocity.y += this->acceleration.y;
                 this->actor.velocity.z += this->acceleration.z;
@@ -578,8 +578,8 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
                     Actor_Kill(&this->actor);
                     // Player laser sound effect if the laser did not time out.
                     if (this->timers[CLEAR_TAG_TIMER_LASER_DEATH] != 0) {
-                        // SfxSource_PlaySfxAtFixedWorldPos(play, &this->actor.world.pos, 20, NA_SE_EN_FANTOM_THUNDER_GND);
-                        SfxSource_PlaySfxAtFixedWorldPos(play, &this->actor.world.pos, 20, NA_SE_EN_COMMON_THUNDER_THR);
+                        // SoundSource_PlaySfxAtFixedWorldPos(play, &this->actor.world.pos, 20, NA_SE_EN_FANTOM_THUNDER_GND);
+                        SoundSource_PlaySfxAtFixedWorldPos(play, &this->actor.world.pos, 20, NA_SE_EN_COMMON_THUNDER_THR);
                     }
                 }
                 break;
@@ -587,8 +587,8 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
 
         if (this->state < CLEAR_TAG_STATE_LASER) {
             // Play the Arwing cutscene.
-            PRINTF("DEMO_MODE %d\n", this->cutsceneMode);
-            PRINTF("CAMERA_NO %d\n", this->subCamId);
+            recomp_printf("DEMO_MODE %d\n", this->cutsceneMode);
+            recomp_printf("CAMERA_NO %d\n", this->subCamId);
 
             if (this->cutsceneMode != CLEAR_TAG_CUTSCENE_MODE_NONE) {
                 f32 subCamCircleX;
@@ -631,7 +631,8 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
 
                 // Cutscene has finished.
                 if (this->cutsceneTimer == 1) {
-                    Play_ReturnToMainCam(play, this->subCamId, 0);
+                    // Play_ReturnToMainCam(play, this->subCamId, 0);
+                    func_80169AFC(play, this->subCamId, 0);
                     // CLEAR_TAG_CUTSCENE_MODE_NONE / SUB_CAM_ID_DONE
                     this->cutsceneMode = this->subCamId = 0;
                     Cutscene_StopManual(play, &play->csCtx);
@@ -647,7 +648,7 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
         Vec3f debrisEffectAcceleration;
 
         this->shouldExplode = false;
-        SfxSource_PlaySfxAtFixedWorldPos(play, &this->actor.world.pos, 40, NA_SE_IT_BOMB_EXPLOSION);
+        SoundSource_PlaySfxAtFixedWorldPos(play, &this->actor.world.pos, 40, NA_SE_IT_BOMB_EXPLOSION);
 
         // Spawn flash effect.
         crashEffectLocation.x = this->actor.world.pos.x;
