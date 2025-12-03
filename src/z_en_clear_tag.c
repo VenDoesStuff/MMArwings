@@ -1,5 +1,6 @@
 #include "modding.h"
 #include "global.h"
+#include "libc/math.h" // why do you need to exist to get rid of errors in vscode
 #include "recomputils.h"
 #include "recompconfig.h"
 #include "proxymm_custom_actor.h"
@@ -125,8 +126,8 @@ void EnClearTag_CreateDebrisEffect(PlayState* play, Vec3f* position, Vec3f* velo
             effect->scale = scale;
 
             // Set the debris effects to spawn in a circle.
-            effect->rotationY = Rand_ZeroFloat(M_PI * 2);
-            effect->rotationX = Rand_ZeroFloat(M_PI * 2);
+            effect->rotationY = Rand_ZeroFloat(M_PIf * 2);
+            effect->rotationX = Rand_ZeroFloat(M_PIf * 2);
 
             effect->timer = effect->bounces = 0;
 
@@ -437,8 +438,8 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
 
                     // Do a Barrel Roll!
                     this->roll += 0.5f;
-                    if (this->roll > M_PI * 2) {
-                        this->roll -= M_PI * 2;
+                    if (this->roll > M_PIf * 2) {
+                        this->roll -= M_PIf * 2;
                     }
 
                     // Set the Arwing to fly to a hardcoded position.
