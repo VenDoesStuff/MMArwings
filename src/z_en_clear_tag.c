@@ -604,8 +604,8 @@ void OoTArwing_Update(Actor* thisx, PlayState* play2) {
 
         if (this->state < CLEAR_TAG_STATE_LASER) {
             // Play the Arwing cutscene.
-            recomp_printf("DEMO_MODE %d\n", this->cutsceneMode);
-            recomp_printf("CAMERA_NO %d\n", this->subCamId);
+            // recomp_printf("DEMO_MODE %d\n", this->cutsceneMode);
+            // recomp_printf("CAMERA_NO %d\n", this->subCamId);
 
             if (this->cutsceneMode != CLEAR_TAG_CUTSCENE_MODE_NONE) {
                 f32 subCamCircleX;
