@@ -2,6 +2,7 @@
 #include "global.h"
 #include "recomputils.h"
 #include "recompconfig.h"
+#include "proxymm_custom_actor.h"
 
 #include "z_en_clear_tag.h"
 
